@@ -2,6 +2,9 @@ import React, { useState } from "react";
 function App() {
   const [subjects, setSubjects] = useState("");
   const [customSubject, setCustomSubject] = useState("");
+
+  const finalSubject = subjects === "Others" ? customSubject : subjects;
+  
   // const [question, setQuestion] = useState("");
   // const [display, setDisplay] = useState([]);
   return (
@@ -24,7 +27,7 @@ function App() {
           onChange = {(e) => setCustomSubject(e.target.value)}
         />: null
       }
-      
+
       <h3>Choose Mode:</h3>
 
 
