@@ -1,14 +1,30 @@
-
+import React, { useState } from "react";
 function App() {
   const [subjects, setSubjects] = useState("");
-  const [question, setQuestion] = useState("");
+  const [customSubject, setCustomSubject] = useState("");
+  // const [question, setQuestion] = useState("");
   // const [display, setDisplay] = useState([]);
   return (
     <div>
       <h1>ProLearnAI - Your teaching assistant</h1>
     
       <h3>Choose Subject:</h3>
-
+      <select value = {subjects} onChange = {(e) => setSubjects(e.target.value)}>
+        <option value = "" > Select a subject </option>
+        <option value = "English" > English </option>
+        <option value = "DSA" > DSA </option>
+        <option value = "Physics" > Physics </option>
+        <option value = "Others" > Others </option>
+      </select>
+      {subjects === "Others" ? 
+        <input
+          type = "text"
+          placeholder = "Enter subject"
+          value = {customSubject}
+          onChange = {(e) => setCustomSubject(e.target.value)}
+        />: null
+      }
+      
       <h3>Choose Mode:</h3>
 
 
