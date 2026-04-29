@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>ProLearnAI - Your teaching assistant</h1>
+    
+      <h3>Choose Subject:</h3>
+
+      <h3>Choose Mode:</h3>
+
+
+      <hr/>
+
+      <button>Clear Chat</button>
+      <p>Download your revision notes</p>
+      <hr/>
+  
+      <footer>
+        <p>Think ProLearnAI could be better?<a href="mailto:shiwaangee@gmail.com">Let us know</a></p>
+        <p>© 2026 ProLearnAI. All rights reserved.</p>
+      </footer>
+
+      <input
+        type = "text"
+        placeholder = "Ask your question"
+      />
     </div>
   );
 }
