@@ -1,5 +1,8 @@
 
 function App() {
+  const [subjects, setSubjects] = useState("");
+  const [question, setQuestion] = useState("");
+  // const [display, setDisplay] = useState([]);
   return (
     <div>
       <h1>ProLearnAI - Your teaching assistant</h1>
