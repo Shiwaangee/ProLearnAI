@@ -4,7 +4,8 @@ function App() {
   const [customSubject, setCustomSubject] = useState("");
 
   const finalSubject = subjects === "Others" ? customSubject : subjects;
-  
+
+  const [mode, setMode] = useState("");
   // const [question, setQuestion] = useState("");
   // const [display, setDisplay] = useState([]);
   return (
@@ -29,7 +30,35 @@ function App() {
       }
 
       <h3>Choose Mode:</h3>
+      <label>
+        <input
+          type = "radio"
+          value = "Exam Mode"
+          checked = {mode === "Exam Mode"}
+          onChange = {(e) => setMode(e.target.value)}
+        />
+        Exam Mode
+      </label>
 
+      <label>
+        <input
+          type = "radio"
+          value = "Concept Mode"
+          checked = {mode === "Concept Mode"}
+          onChange = {(e) => setMode(e.target.value)}
+        />
+        Concept Mode
+      </label>
+
+      <label>
+        <input
+          type = "radio"
+          value = "Quiz Mode"
+          checked = {mode === "Quiz Mode"}
+          onChange = {(e) => setMode(e.target.value)}
+        />
+        Quiz Mode
+      </label>
 
       <hr/>
 
