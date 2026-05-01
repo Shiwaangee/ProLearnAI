@@ -97,7 +97,14 @@ function App() {
 
       <hr/>
 
-      
+      <h3>Chat History:</h3>
+      <div>
+        {history.map((msg, i) => (
+          <p key={i}>
+            <strong>{msg.role}:</strong> {msg.content}
+          </p>
+        ))}
+      </div>
       
       <button>Clear Chat</button>
       <p>Download your revision notes</p>
