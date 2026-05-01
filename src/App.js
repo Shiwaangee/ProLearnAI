@@ -6,8 +6,43 @@ function App() {
   const finalSubject = subjects === "Others" ? customSubject : subjects;
 
   const [mode, setMode] = useState("");
-  // const [question, setQuestion] = useState("");
-  // const [display, setDisplay] = useState([]);
+
+  const [question, setQuestion] = useState("");
+  const [history, setHistory] = useState([]);
+
+  async function handleSend(){
+    // add history and the current question to newhistory
+    const newHistory = [...history, {role: "user", content: question}];
+
+    // send this newhistory to api and get the response
+    // add the newhistory and the response to history
+    try{
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.REACT_APP_OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'openrouter/free',
+          messages: [
+            // prompt
+            { role: "system", content: "You are a helpful tutor." },
+
+            ...newHistory
+          ],
+        }),
+      });
+      const data = await response.json();
+      const reply = data.choices[0].message.content;
+      setHistory([...newHistory, { role: "assistant", content: reply }]);
+    }catch(error){
+      console.error("Error fetching reply:", error);
+      setHistory([...newHistory, { role: "assistant", content: "Oops, something went wrong." }]);
+    }
+    setQuestion("");
+  }
+
   return (
     <div>
       <h1>ProLearnAI - Your teaching assistant</h1>
@@ -62,6 +97,8 @@ function App() {
 
       <hr/>
 
+      
+      
       <button>Clear Chat</button>
       <p>Download your revision notes</p>
       <hr/>
@@ -74,7 +111,12 @@ function App() {
       <input
         type = "text"
         placeholder = "Ask your question"
+        value = {question}
+        onChange = {(e) => setQuestion(e.target.value)}
       />
+      <button onClick = {handleSend}>
+        Send
+      </button>
     </div>
   );
 }
