@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import './index.css';
+
 function App() {
   const [subjects, setSubjects] = useState("");
   const [customSubject, setCustomSubject] = useState("");
@@ -44,12 +46,17 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>ProLearnAI - Your teaching assistant</h1>
-    
-      <h3>Choose Subject:</h3>
-      <select value = {subjects} onChange = {(e) => setSubjects(e.target.value)}>
-        <option value = "" > Select a subject </option>
+    <div className = "bg-slate-900 text-gray-100 min-h-screen flex flex-col items-center">
+      <div className = "pt-20 text-lg">
+        <h1>ProLearnAI - Your teaching assistant</h1>    
+      </div>
+
+      <div className = "w-full max-w-[900px] mx-auto text-md">
+      <h3 className = "font-sans font-extralight">Choose Subject:</h3>
+      <select value = {subjects} onChange = {(e) => setSubjects(e.target.value)}
+        className = "border rounded w-full h-10 bg-slate-900 text-[15px] text-gray-200 px-4"  
+      >
+        <option value = ""> Select a subject </option>
         <option value = "English" > English </option>
         <option value = "DSA" > DSA </option>
         <option value = "Physics" > Physics </option>
@@ -61,44 +68,49 @@ function App() {
           placeholder = "Enter subject"
           value = {customSubject}
           onChange = {(e) => setCustomSubject(e.target.value)}
+          className = "font-sans"
         />: null
       }
 
-      <h3>Choose Mode:</h3>
-      <label>
-        <input
-          type = "radio"
-          value = "Exam Mode"
-          checked = {mode === "Exam Mode"}
-          onChange = {(e) => setMode(e.target.value)}
-        />
-        Exam Mode
-      </label>
+      <div className = "mb-6">
+      <h3 className = "font-sans font-extralight">Choose Mode:</h3>
+      <div className = "flex flex-col gap-2 font-sans ">
+        <label>
+          <input
+            type = "radio"
+            value = "Exam Mode"
+            checked = {mode === "Exam Mode"}
+            onChange = {(e) => setMode(e.target.value)}
+          />
+          Exam Mode
+        </label>
 
-      <label>
-        <input
-          type = "radio"
-          value = "Concept Mode"
-          checked = {mode === "Concept Mode"}
-          onChange = {(e) => setMode(e.target.value)}
-        />
-        Concept Mode
-      </label>
+        <label>
+          <input
+            type = "radio"
+            value = "Concept Mode"
+            checked = {mode === "Concept Mode"}
+            onChange = {(e) => setMode(e.target.value)}
+          />
+          Concept Mode
+        </label>
 
-      <label>
-        <input
-          type = "radio"
-          value = "Quiz Mode"
-          checked = {mode === "Quiz Mode"}
-          onChange = {(e) => setMode(e.target.value)}
-        />
-        Quiz Mode
-      </label>
+        <label>
+          <input
+            type = "radio"
+            value = "Quiz Mode"
+            checked = {mode === "Quiz Mode"}
+            onChange = {(e) => setMode(e.target.value)}
+          />
+          Quiz Mode
+        </label>
 
+      </div>
+      </div>
       <hr/>
 
-      <h3>Chat History:</h3>
-      <div>
+      {/* <h3>Chat History:</h3> */}
+      <div className = "font-sans">
         {history.map((msg, i) => (
           <p key={i}>
             <strong>{msg.role}:</strong> {msg.content}
@@ -106,24 +118,28 @@ function App() {
         ))}
       </div>
       
-      <button>Clear Chat</button>
-      <p>Download your revision notes</p>
+      <button className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
+      <p className = "font-sans font-extralight">Download your revision notes</p>
       <hr/>
-  
+      </div>
+
       <footer>
-        <p>Think ProLearnAI could be better?<a href="mailto:shiwaangee@gmail.com">Let us know</a></p>
+        <p>Think ProLearnAI could be better?<a href="mailto: shiwaangee@gmail.com">Let us know</a></p>
         <p>© 2026 ProLearnAI. All rights reserved.</p>
       </footer>
 
-      <input
-        type = "text"
-        placeholder = "Ask your question"
-        value = {question}
-        onChange = {(e) => setQuestion(e.target.value)}
-      />
-      <button onClick = {handleSend}>
-        Send
-      </button>
+      <div className = "flex fixed bottom-0 mb-6 h-10">
+        <input
+          type = "text"
+          placeholder = "Ask your question..."
+          value = {question}
+          onChange = {(e) => setQuestion(e.target.value)}
+          className = "px-48 border rounded-full bg-slate-500 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1"
+        />
+        <button onClick = {handleSend} className = "border rounded-full w-10 text-2xl  bg-slate-500 text-gray-200">
+          ⮝  
+        </button>
+      </div>
     </div>
   );
 }
