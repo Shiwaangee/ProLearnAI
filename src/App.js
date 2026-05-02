@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './index.css';
-
+import { jsPDF } from "jspdf";
 function App() {
   const [subjects, setSubjects] = useState("");
   const [customSubject, setCustomSubject] = useState("");
@@ -45,6 +45,32 @@ function App() {
     setQuestion("");
   }
 
+ function handleDownloadPDF() {
+  const doc = new jsPDF();
+  doc.setFontSize(10);
+
+  let y = 10;
+
+  history.forEach((msg) => {
+    const content = String(msg.content || "");
+    const text = `${msg.role}: ${content}`;
+
+    // Wrap text to fit within page width
+    const lines = doc.splitTextToSize(text, 180);
+
+    doc.text(lines, 10, y);
+    y += lines.length * 10; // move down based on wrapped lines
+
+    // Add new page if needed
+    if (y > 280) {
+      doc.addPage();
+      y = 10;
+    }
+  });
+
+  doc.save("notes.pdf");
+}
+  
   return (
     <div className = "bg-slate-900 text-gray-100 min-h-screen flex flex-col items-center">
       <div className = "pt-20 text-lg">
@@ -121,7 +147,7 @@ function App() {
       </div>
       
       <button onClick = {() => setHistory([])} className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
-      <p className = "font-sans font-extralight">Download your revision notes</p>
+      <p className = "font-sans font-extralight" onClick = {handleDownloadPDF}>Download your revision notes</p>
       <hr/>
       </div>
 
