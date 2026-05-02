@@ -147,13 +147,13 @@ function App() {
       </div>
       
       <button onClick = {() => setHistory([])} className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
-      <p className = "font-sans font-extralight" onClick = {handleDownloadPDF}>Download your revision notes</p>
+      <p className = "font-sans font-extralight text-sm underline cursor-pointer underline-offset-2 hover:text-blue-400" onClick = {handleDownloadPDF}>Download your revision notes</p>
       <hr/>
       </div>
 
-      <footer>
-        <p>Think ProLearnAI could be better?<a href="mailto: shiwaangee@gmail.com">Let us know</a></p>
-        <p>© 2026 ProLearnAI. All rights reserved.</p>
+      <footer className = "flex flex-col items-center">
+        <p className = "mb-0 font-light font-sans">Think ProLearnAI could be better? <a href="mailto: shiwaangee@gmail.com" className = "text-blue-400 hover:text-gray-300">Let us know</a></p>
+        <p className = "mt-0 text-[14px] font-sans font-extralight">© 2026 ProLearnAI. All rights reserved.</p>
       </footer>
 
       <div className = "flex fixed bottom-0 mb-6 h-10">
