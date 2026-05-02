@@ -113,7 +113,7 @@ function App() {
       <div className = "font-sans">
         {history.map((msg, i) => (
           <div className = {msg.role === "user" ? "text-right" : "text-left"} key={i}>
-            <p>
+            <p className = {msg.role === "user" ? "bg-cyan-500/10 p-4 inline-block rounded-lg" : "bg-yellow-500/10 p-4 inline-block rounded-lg"}>
               {msg.content}
             </p>
           </div>
