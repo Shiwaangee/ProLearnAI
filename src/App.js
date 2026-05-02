@@ -112,9 +112,11 @@ function App() {
       {/* <h3>Chat History:</h3> */}
       <div className = "font-sans">
         {history.map((msg, i) => (
-          <p key={i}>
-            <strong>{msg.role}:</strong> {msg.content}
-          </p>
+          <div className = {msg.role === "user" ? "text-right" : "text-left"} key={i}>
+            <p>
+              {msg.content}
+            </p>
+          </div>
         ))}
       </div>
       
