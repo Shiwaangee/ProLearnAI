@@ -120,7 +120,7 @@ function App() {
         ))}
       </div>
       
-      <button className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
+      <button onClick = {() => setHistory([])} className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
       <p className = "font-sans font-extralight">Download your revision notes</p>
       <hr/>
       </div>
