@@ -59,14 +59,10 @@ function App() {
   }
 
   async function handleSend(){
-    // add history and the current question to newhistory
-    const newHistory = [...history, {role: "user", content: question}];
 
     const systemPrompt = getSystemPrompt(finalSubject, mode);
     
     setIsTyping(true);
-    // send this newhistory to api and get the response
-    // add the newhistory and the response to history
     try{
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
@@ -78,18 +74,16 @@ function App() {
           model: 'openrouter/free',
           messages: [
             // prompt
-            { role: "system", content: systemPrompt },
-
-            ...newHistory
-          ],
+            ...history,
+            { role: "user", content: `Question: ${question}\n\nInstructions:\n${systemPrompt}` }          ],
         }),
       });
       const data = await response.json();
       const reply = data.choices[0].message.content;
-      setHistory([...newHistory, { role: "assistant", content: reply }]);
+      setHistory([...history, { role: "user", content: question }, { role: "assistant", content: reply }]);
     }catch(error){
       console.error("Error fetching reply:", error);
-      setHistory([...newHistory, { role: "assistant", content: "Oops, something went wrong." }]);
+      setHistory([...history, { role: "user", content: question }, { role: "assistant", content: "Oops, something went wrong." }]);
     }finally{
       setIsTyping(false);
       setQuestion("");
