@@ -55,7 +55,7 @@ function App() {
       style = `Without giving any explanation, provide multiple choice questions with four options. 
       - After the user selects an option, explain why the correct answer is right and why the other options are wrong.`
     }
-    return `You are a highly skilled tutor for ${subject}. Use ${mode} style: ${style}. Your response should be with respect to ${subject}. Keep in mind that you first talk in a very common language because you must think that the student asking does not know anything about that topic and you have to build a bridge between the students current knowledge with the topic so the words you use are more familiar and normal because you are a teacher not a book reader you have to make them understand so be aware you are not just presenting the bookish language. Also, when checking answers, **do not be lenient**. You are a strict examiner.  Also, use markdown formatting for better readability, including bullet points, numbered lists, and bold text where appropriate.`
+    return `Give replies very fast. You are a highly skilled tutor for ${subject}. Use ${mode} style: ${style}. Your response should be with respect to ${subject}. Keep in mind that you first talk in a very common language because you must think that the student asking does not know anything about that topic and you have to build a bridge between the students current knowledge with the topic so the words you use are more familiar and normal because you are a teacher not a book reader you have to make them understand so be aware you are not just presenting the bookish language. Also, when checking answers, **do not be lenient**. You are a strict examiner.  Also, use markdown formatting for better readability, including bullet points, numbered lists, and bold text where appropriate.`
   }
 
   async function handleSend(){
@@ -126,7 +126,7 @@ function App() {
       <div className = "w-full max-w-[900px] mx-auto text-md">
       <h3 className = "font-sans font-extralight">Choose Subject:</h3>
       <select value = {subjects} onChange = {(e) => setSubjects(e.target.value)}
-        className = "border rounded w-full h-10 bg-slate-900 text-[15px] text-gray-200 px-4"  
+        className = "border rounded w-full h-10 bg-slate-900 text-[15px] text-gray-200 px-4 hover:border-yellow-500"  
       >
         <option value = ""> Select a subject </option>
         <option value = "English" > English </option>
@@ -140,7 +140,7 @@ function App() {
           placeholder = "Enter subject"
           value = {customSubject}
           onChange = {(e) => setCustomSubject(e.target.value)}
-          className = "font-sans"
+          className = "font-sans border rounded w-full max-w-[500px] h-7 bg-slate-900 text-[15px] text-gray-200 px-4 mt-2 hover:border-yellow-500"
         />: null
       }
 
@@ -197,7 +197,7 @@ function App() {
         )}
       </div>
       
-      <button onClick = {() => setHistory([])} className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
+      <button onClick = {() => setHistory([])} className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4 hover:bg-red-400/50 ">Clear Chat</button>
       <p className = "font-sans font-extralight text-sm underline cursor-pointer underline-offset-2 hover:text-blue-400" onClick = {handleDownloadPDF}>Download your revision notes</p>
       <hr/>
       </div>
@@ -213,7 +213,7 @@ function App() {
           placeholder = "Ask your question..."
           value = {question}
           onChange = {(e) => setQuestion(e.target.value)}
-          className = "px-48 border rounded-full bg-slate-500 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 focus:outline-none focus:border-cyan-500 focus:border-4 focus:bg-slate-900 focus:text-gray-200 focus:placeholder-gray-600"
+          className = "px-48 border rounded-full bg-slate-500 text-center text-[16px] text-gray-300 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 focus:outline-none focus:border-cyan-500 focus:border-4 focus:bg-slate-900 focus:text-gray-200 focus:placeholder-gray-600"
         />
         <button onClick = {handleSend} className = "border rounded-full w-10 text-2xl bg-slate-500 text-gray-200 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 active:border-cyan-600 active:bg-slate-800">
           ⮝  
