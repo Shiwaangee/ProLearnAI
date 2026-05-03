@@ -12,6 +12,8 @@ function App() {
   const [question, setQuestion] = useState("");
   const [history, setHistory] = useState([]);
 
+  const [isTyping, setIsTyping] = useState(false);
+
   function getSystemPrompt(subject, mode){
     let style = "";
     if (mode === "Exam Mode"){
@@ -60,6 +62,7 @@ function App() {
 
     const systemPrompt = getSystemPrompt(finalSubject, mode);
     
+    setIsTyping(true);
     // send this newhistory to api and get the response
     // add the newhistory and the response to history
     try{
@@ -85,8 +88,10 @@ function App() {
     }catch(error){
       console.error("Error fetching reply:", error);
       setHistory([...newHistory, { role: "assistant", content: "Oops, something went wrong." }]);
+    }finally{
+      setIsTyping(false);
+      setQuestion("");
     }
-    setQuestion("");
   }
 
  function handleDownloadPDF() {
@@ -188,6 +193,11 @@ function App() {
             </p>
           </div>
         ))}
+        {isTyping && (
+          <p className="text-sm text-green-400 italic mt-2">
+            is typing...
+          </p>
+        )}
       </div>
       
       <button onClick = {() => setHistory([])} className = "font-sans font-extralight bg-slate-900 text-gray-200 mt-2 border border-gray-300 py-2 px-4">Clear Chat</button>
