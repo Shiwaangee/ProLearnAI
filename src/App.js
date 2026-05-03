@@ -151,20 +151,20 @@ function App() {
       <hr/>
       </div>
 
-      <footer className = "flex flex-col items-center">
+      <footer className = "flex flex-col items-center mb-20">
         <p className = "mb-0 font-light font-sans">Think ProLearnAI could be better? <a href="mailto: shiwaangee@gmail.com" className = "text-blue-400 hover:text-gray-300">Let us know</a></p>
         <p className = "mt-0 text-[14px] font-sans font-extralight">© 2026 ProLearnAI. All rights reserved.</p>
       </footer>
 
-      <div className = "flex fixed bottom-0 mb-6 h-10">
+      <div className = "flex fixed bottom-0 mb-6 h-10 ">
         <input
           type = "text"
           placeholder = "Ask your question..."
           value = {question}
           onChange = {(e) => setQuestion(e.target.value)}
-          className = "px-48 border rounded-full bg-slate-500 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1"
+          className = "px-48 border rounded-full bg-slate-500 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 focus:outline-none focus:border-cyan-500 focus:border-4 focus:bg-slate-900 focus:text-gray-200 focus:placeholder-gray-600"
         />
-        <button onClick = {handleSend} className = "border rounded-full w-10 text-2xl  bg-slate-500 text-gray-200">
+        <button onClick = {handleSend} className = "border rounded-full w-10 text-2xl bg-slate-500 text-gray-200 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 active:border-cyan-600 active:bg-slate-800">
           ⮝  
         </button>
       </div>
