@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './index.css';
 import { jsPDF } from "jspdf";
+import ReactMarkdown from "react-markdown";
+
 function App() {
   const [subjects, setSubjects] = useState("");
   const [customSubject, setCustomSubject] = useState("");
@@ -189,7 +191,7 @@ function App() {
         {history.map((msg, i) => (
           <div className = {msg.role === "user" ? "text-right" : "text-left"} key={i}>
             <p className = {msg.role === "user" ? "bg-cyan-500/10 p-4 inline-block rounded-lg" : "bg-yellow-500/10 p-4 inline-block rounded-lg"}>
-              {msg.content}
+              <ReactMarkdown>{msg.content}</ReactMarkdown>
             </p>
           </div>
         ))}
