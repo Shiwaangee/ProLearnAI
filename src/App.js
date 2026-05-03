@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './index.css';
 import { jsPDF } from "jspdf";
 import ReactMarkdown from "react-markdown";
-
+import removeMd from "remove-markdown";
 function App() {
   const [subjects, setSubjects] = useState("");
   const [customSubject, setCustomSubject] = useState("");
@@ -90,23 +90,24 @@ function App() {
     }
   }
 
- function handleDownloadPDF() {
-  const doc = new jsPDF();
-  doc.setFontSize(10);
 
-  let y = 10;
+  function handleDownloadPDF() {
+    const doc = new jsPDF();
+    doc.setFontSize(10);
+
+    let y = 10;
 
   history.forEach((msg) => {
-    const content = String(msg.content || "");
-    const text = `${msg.role}: ${content}`;
+    const rawContent = String(msg.content || "");
+    const cleanContent = removeMd(rawContent)   // strip markdown
+      .replace(/[^\x20-\x7E\n]/g, "");          // remove weird symbols
 
-    // Wrap text to fit within page width
+    const text = `${msg.role.toUpperCase()}: ${cleanContent}`;
     const lines = doc.splitTextToSize(text, 180);
 
     doc.text(lines, 10, y);
-    y += lines.length * 10; // move down based on wrapped lines
+    y += lines.length * 5;
 
-    // Add new page if needed
     if (y > 280) {
       doc.addPage();
       y = 10;
