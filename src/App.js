@@ -218,15 +218,15 @@ function App() {
         <p className = "mt-0 text-[14px] font-sans font-extralight">© 2026 ProLearnAI. All rights reserved.</p>
       </footer>
 
-      <div className = "flex fixed bottom-0 mb-6 h-10 w-full justify-center px-2">
+      <div className = "flex fixed bottom-0 mb-6 h-10 ">
         <input
           type = "text"
           placeholder = "Ask your question..."
           value = {question}
           onChange = {(e) => setQuestion(e.target.value)}
-          className = "w-[calc(100%-48px)] sm:w-auto px-4 sm:px-48 border rounded-full bg-slate-500 text-center text-[16px] text-gray-300 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 focus:outline-none focus:border-cyan-500 focus:border-4 focus:bg-slate-900 focus:text-gray-200 focus:placeholder-gray-600"
+          className = "px-48 border rounded-full bg-slate-500 text-center text-[16px] text-gray-300 placeholder-gray-200 placeholder:text-[15px]  placeholder:text-center mr-1 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 focus:outline-none focus:border-cyan-500 focus:border-4 focus:bg-slate-900 focus:text-gray-200 focus:placeholder-gray-600"
         />
-        <button onClick = {handleSend} className = " shrink-0 border rounded-full w-10 text-2xl bg-slate-500 text-gray-200 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 active:border-cyan-600 active:bg-slate-800">
+        <button onClick = {handleSend} className = "border rounded-full w-10 text-2xl bg-slate-500 text-gray-200 hover:border-cyan-500 hover:border-4 hover:bg-slate-900 active:border-cyan-600 active:bg-slate-800">
           ⮝  
         </button>
       </div>
