@@ -77,20 +77,20 @@ function App() {
             { role: "user", content: `Question: ${question}\n\nInstructions:\n${systemPrompt}` }          ],
         }),
       });
-      // const data = await response.json();
-      // const reply = data.choices[0].message.content;
       const data = await response.json();
-
-      console.log("OpenRouter status:", response.status);
-      console.log("OpenRouter response:", data);
-
-      if (!response.ok) {
-        throw new Error(
-          data?.error?.message || `OpenRouter error: ${response.status}`
-        );
-      }
-
       const reply = data.choices[0].message.content;
+      // const data = await response.json();
+
+      // console.log("OpenRouter status:", response.status);
+      // console.log("OpenRouter response:", data);
+
+      // if (!response.ok) {
+      //   throw new Error(
+      //     data?.error?.message || `OpenRouter error: ${response.status}`
+      //   );
+      // }
+
+      // const reply = data.choices[0].message.content;
       setHistory([...history, { role: "user", content: question }, { role: "assistant", content: reply }]);
     }catch(error){
       console.error("Error fetching reply:", error);
